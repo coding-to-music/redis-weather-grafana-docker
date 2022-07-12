@@ -1,3 +1,33 @@
+# redis-weather-grafana-docker
+
+# 🚀 Grafana Smart Weather Dashboard 🚀
+
+https://github.com/coding-to-music/redis-weather-grafana-docker
+
+From / By https://github.com/RedisTimeSeries/redis-weather
+
+Example of a Grafana dashboard:
+
+![Grafana screenshot](https://github.com/coding-to-music/redis-weather-grafana-docker/blob/main/images/example-dashboard.png?raw=true)
+
+## Environment variables:
+
+```java
+
+```
+
+## GitHub
+
+```java
+git init
+git add .
+git remote remove origin
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:coding-to-music/redis-weather-grafana-docker.git
+git push -u origin main
+```
+
 # Grafana Smart Weather Dashboard
 
 <div id="badges" align="center">
@@ -8,34 +38,30 @@
 
 </div>
 
-
 ## Introduction
 
-The purpose of this software is export current, hourly and daily weather forecast from https://openweathermap.org and display it on Grafana dashboards in the various numeric and graphs forms for a precise vision of the weather in the multiple locations, by multiple parameters, including temperature, wind speed, amount of precipitation, percent of cloudiness, a distance of visibility, etc.  
+The purpose of this software is export current, hourly and daily weather forecast from https://openweathermap.org and display it on Grafana dashboards in the various numeric and graphs forms for a precise vision of the weather in the multiple locations, by multiple parameters, including temperature, wind speed, amount of precipitation, percent of cloudiness, a distance of visibility, etc.
 
-There are a lot of interesting locations within a couple of hours drive from my house, and the weather can be very different from one to another. What I really want is a dashboard that shows the weather in a dozen locations on one screen, so I can compare conditions at a glance. And I don’t just want to compare locations near each other, but understand, which is good for particular type of activity: bike ride, rock climbing, drone fly, landscape photography, hiking, etc. 
+There are a lot of interesting locations within a couple of hours drive from my house, and the weather can be very different from one to another. What I really want is a dashboard that shows the weather in a dozen locations on one screen, so I can compare conditions at a glance. And I don’t just want to compare locations near each other, but understand, which is good for particular type of activity: bike ride, rock climbing, drone fly, landscape photography, hiking, etc.
 
-So, additionaly to the current weather and forecast, the dashboard maps for every type of defined activity and show detailed forecast for each activity at particular location. You can customize the activites and their parameters in the config file (see below).  
+So, additionaly to the current weather and forecast, the dashboard maps for every type of defined activity and show detailed forecast for each activity at particular location. You can customize the activites and their parameters in the config file (see below).
 
 ![](images/main_screen_shot.png)
 
 ![](images/activity_maps.png)
 
-
 ### The Docker container runs the following applications:
 
-* openweather_redis_exporter.py - app to get weather metrics from https://openweathermap.org
-* Redis database with RedisTimeSeries module - to store historical weather data and future forecasts
-* Grafana with Redis Data Source - to display the weather data
+- openweather_redis_exporter.py - app to get weather metrics from https://openweathermap.org
+- Redis database with RedisTimeSeries module - to store historical weather data and future forecasts
+- Grafana with Redis Data Source - to display the weather data
 
 The top section of the dashboard shows the current conditions for one location, which can be the primary or favorite or just selected from the list of available places (there is a Grafana template variable selection list in the top left corner of the dashboard). The bottom section shows weather conditions for a few different locations, so you can instantly compare the weather in various places.  
 Grafana allows me to highlight low/high zones for temperature, dangerous zones for wind speed, display the degree of cloudiness, and mark periods of daytime and nighttime.
 
-
 ## Configuration
 
-
-`openweather_redis_exporter.py` script comes together with the configuration file `openweather_redis_exporter.json`, which has a number of mandatory and optional parameters: 
+`openweather_redis_exporter.py` script comes together with the configuration file `openweather_redis_exporter.json`, which has a number of mandatory and optional parameters:
 
 ```
 {
@@ -54,7 +80,7 @@ Grafana allows me to highlight low/high zones for temperature, dangerous zones f
 		},
 		...
 	],
-	"activity:Hiking": #definition of activity "Hiking". You can include any number of the metrics with minimum and maximum values accepted for this activity 
+	"activity:Hiking": #definition of activity "Hiking". You can include any number of the metrics with minimum and maximum values accepted for this activity
     [
         {
             "name":"temp",
@@ -78,7 +104,7 @@ Grafana allows me to highlight low/high zones for temperature, dangerous zones f
 
 There's nothing to configure in Redis.
 
-Grafana comes with necessary default settings, including the Grafana Weather dashboard (you can modify this dashboard yourself later). The only thing you need to change in Grafana: Dashboard timezone setting should be `UTC`. This will ensure the data from locations in different time zone are displayed correctly: in a location local time. 
+Grafana comes with necessary default settings, including the Grafana Weather dashboard (you can modify this dashboard yourself later). The only thing you need to change in Grafana: Dashboard timezone setting should be `UTC`. This will ensure the data from locations in different time zone are displayed correctly: in a location local time.
 
 ## Run using `docker-compose`
 
