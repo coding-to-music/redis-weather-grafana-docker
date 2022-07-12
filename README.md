@@ -8,7 +8,7 @@ From / By https://github.com/RedisTimeSeries/redis-weather
 
 Example of a Grafana dashboard:
 
-![Grafana screenshot](https://github.com/coding-to-music/redis-weather-grafana-docker/blob/main/images/example-dashboard.png?raw=true)
+![Grafana screenshot](https://github.com/coding-to-music/grafana-prometheus-node-js-example/blob/main/images/example-dashboard.png?raw=true)
 
 ## Environment variables:
 
