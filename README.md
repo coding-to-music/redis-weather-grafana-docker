@@ -13,7 +13,7 @@ Example of a Grafana dashboard:
 ## Environment variables:
 
 ```java
-
+OPEN_WEATHER_MAP_KEY=""
 ```
 
 ## GitHub
