@@ -8,8 +8,8 @@ services:
       - "6379:6379"
     # Uncomment and edit the local path in the following line to have
     # Redis' data persisted to the host's filesystem.
-    # volumes:
-    #   - ./dump.rdb:/data/dump.rdb
+    volumes:
+      - ./dump.rdb:/data/dump.rdb
 
   grafana:
     container_name: redis-weather-grafana
@@ -26,7 +26,7 @@ services:
       - ./provisioning:/etc/grafana/provisioning
       - ./dashboards:/var/lib/grafana/dashboards
       # Uncomment to preserve Grafana configuration
-      # - ./data:/var/lib/grafana
+      - ./data:/var/lib/grafana
 
   app:
     container_name: redis-weather-app 
