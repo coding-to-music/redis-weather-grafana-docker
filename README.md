@@ -24,6 +24,62 @@ git remote add origin git@github.com:coding-to-music/redis-weather-grafana-docke
 git push -u origin main
 ```
 
+## Error messages
+
+```
+Starting redismod              ... done
+Starting redis-weather-grafana ... done
+Starting redis-weather-app     ... done
+Attaching to redismod, redis-weather-grafana, redis-weather-app
+redis-weather-grafana | mkdir: can't create directory '/var/lib/grafana/plugins': Permission denied
+redis-weather-grafana | GF_PATHS_DATA='/var/lib/grafana' is not writable.
+redis-weather-grafana | You may have issues with file permissions, more information here: http://docs.grafana.org/installation/docker/#migrate-to-v51-or-later
+
+snip
+
+redismod   | 1:M 14 Jul 2022 05:31:04.291 * Module 'rg' loaded from /usr/lib/redis/modules/redisgears.so
+redismod   | 1:M 14 Jul 2022 05:31:04.292 # Short read or OOM loading DB. Unrecoverable error, aborting now.
+redismod   | 1:M 14 Jul 2022 05:31:04.292 # Internal error in RDB reading offset 0, function at rdb.c:2742 -> Unexpected EOF reading RDB file
+redismod   | [offset 0] Checking RDB file dump.rdb
+redismod   | --- RDB ERROR DETECTED ---
+redismod   | [offset 0] Unexpected EOF reading RDB file
+redismod   | [additional info] While doing: start
+redismod   | [additional info] Reading type 0 (string)
+redismod   | [info] 0 keys read
+redismod   | [info] 0 expires
+redismod   | [info] 0 already expired
+redis-weather-grafana exited with code 1
+redismod exited with code 1
+redis-weather-app | Traceback (most recent call last):
+redis-weather-app |   File "/usr/local/lib/python3.8/site-packages/redis/connection.py", line 611, in connect
+redis-weather-app |     sock = self.retry.call_with_retry(
+redis-weather-app |   File "/usr/local/lib/python3.8/site-packages/redis/retry.py", line 46, in call_with_retry
+redis-weather-app |     return do()
+redis-weather-app |   File "/usr/local/lib/python3.8/site-packages/redis/connection.py", line 612, in <lambda>
+redis-weather-app |     lambda: self._connect(), lambda error: self.disconnect(error)
+redis-weather-app |   File "/usr/local/lib/python3.8/site-packages/redis/connection.py", line 645, in _connect
+redis-weather-app |     for res in socket.getaddrinfo(
+redis-weather-app |   File "/usr/local/lib/python3.8/socket.py", line 918, in getaddrinfo
+redis-weather-app |     for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+redis-weather-app | socket.gaierror: [Errno -2] Name or service not known
+redis-weather-app |
+redis-weather-app | During handling of the above exception, another exception occurred:
+redis-weather-app |
+redis-weather-app | Traceback (most recent call last):
+redis-weather-app |   File "openweather_redis_exporter.py", line 30, in <module>
+redis-weather-app |     r.delete("places")
+redis-weather-app |   File "/usr/local/lib/python3.8/site-packages/redis/commands/core.py", line 1588, in delete
+redis-weather-app |     return self.execute_command("DEL", *names)
+redis-weather-app |   File "/usr/local/lib/python3.8/site-packages/redis/client.py", line 1235, in execute_command
+redis-weather-app |     conn = self.connection or pool.get_connection(command_name, **options)
+redis-weather-app |   File "/usr/local/lib/python3.8/site-packages/redis/connection.py", line 1387, in get_connection
+redis-weather-app |     connection.connect()
+redis-weather-app |   File "/usr/local/lib/python3.8/site-packages/redis/connection.py", line 617, in connect
+redis-weather-app |     raise ConnectionError(self._error_message(e))
+redis-weather-app | redis.exceptions.ConnectionError: Error -2 connecting to host.docker.internal:6379. Name or service not known.
+redis-weather-app exited with code 1
+```
+
 # Grafana Smart Weather Dashboard
 
 <div id="badges" align="center">
