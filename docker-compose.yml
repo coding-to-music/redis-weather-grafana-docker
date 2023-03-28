@@ -1,15 +1,23 @@
-version: "3.4"
+version: "3.5"
 
 services:
   redis:
-    container_name: redismod
-    image: redislabs/redismod:latest
+    container_name: redis
+    image: redis:latest
     ports:
       - "6379:6379"
     # Uncomment and edit the local path in the following line to have
     # Redis' data persisted to the host's filesystem.
-    volumes:
-      - ./dump.rdb:/data/dump.rdb
+    # volumes:
+    #   - ./dump.rdb:/data/dump.rdb
+
+    # container_name: redismod
+    # image: redislabs/redis:latest
+
+  # app:
+  #   container_name: redis-weather-app 
+  #   build: ./app
+  #   depends_on: [redis]
 
   # grafana:
   #   container_name: redis-weather-grafana
@@ -28,9 +36,5 @@ services:
   #     # Uncomment to preserve Grafana configuration
   #     # - ./data:/var/lib/grafana
 
-  app:
-    container_name: redis-weather-app 
-    build: ./app
-    depends_on: [redis]
   
 
