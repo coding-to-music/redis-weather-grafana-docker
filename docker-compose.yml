@@ -26,7 +26,7 @@ services:
       - ./provisioning:/etc/grafana/provisioning
       - ./dashboards:/var/lib/grafana/dashboards
       # Uncomment to preserve Grafana configuration
-      - ./data:/var/lib/grafana
+      # - ./data:/var/lib/grafana
 
   app:
     container_name: redis-weather-app 
